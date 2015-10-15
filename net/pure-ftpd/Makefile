@@ -12,7 +12,9 @@ PKG_VERSION:=1.0.32
 PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=http://download.pureftpd.org/pub/pure-ftpd/releases
+PKG_SOURCE_URL:=\
+	http://download.pureftpd.org/pub/pure-ftpd/releases \
+	http://download.pureftpd.org/pub/pure-ftpd/releases/obsolete
 PKG_MD5SUM:=065211a4319e2089bd16b44c003eb0f8
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
