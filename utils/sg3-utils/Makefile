@@ -20,7 +20,6 @@ include $(INCLUDE_DIR)/package.mk
 define Package/sg3-utils
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=+kmod-usb-storage
   TITLE:=sg3 scsi utilities
   URL:=http://sg.danny.cz/sg/sg3_utils.html
 endef
@@ -39,14 +38,16 @@ define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) -f no_lib/Makefile.linux \
 		DESTDIR=$(STAGING_DIR) \
 		CC="$(TARGET_CC)" \
-		CFLAGS="$(TARGET_CFLAGS) -DSG3_UTILS_LINUX" \
-		sg_start
+		CFLAGS="$(TARGET_CFLAGS) -DSG3_UTILS_LINUX"
 endef
 
 
 define Package/sg3-utils/install
 	$(INSTALL_DIR) $(1)/usr/bin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/sg_start $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/{sg_requests,sg_scan,sg_vpd,sg_sat_identify,sg_rdac,sg_test_rwbuf,sg_read,sg_readcap,sg_senddiag} $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/{sg_reset,sg_rtpg,sg_wr_mode,sg_write_buffer,sg_sync,sg_ident,sg_verify,sg_luns,sg_read_buffer}	$(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/{sg_turs,sg_rbuf,sg_map26,sg_format,sg_logs,sg_persist,sg_inq,sg_reassign,sg_raw,sg_rmsn,sg_start} $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/{sg_opcodes,sg_ses,sg_modes,sg_map,sg_get_config,sg_write_long,sg_dd,sg_prevent,sg_read_long,sg_emc_trespass} $(1)/usr/bin
 endef
 
 
